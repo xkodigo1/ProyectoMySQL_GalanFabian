@@ -1,419 +1,494 @@
--- USE campusmanagement;
-
 -- 1. Campus
-INSERT INTO Campus (nombre, ciudad, region, direccion) 
-VALUES 
-('Campus Bucaramanga', 'Bucaramanga', 'Santander', 'Zona Franca de Santander'),
-('Campus Tibú', 'Tibú', 'Norte de Santander', 'Calle Principal #45'),
-('Campus Bogotá', 'Bogotá', 'Cundinamarca', 'Avenida El Dorado #85-20');
+INSERT INTO Campus (nombre, ciudad, region, direccion) VALUES
+('CampusLands', 'Bucaramanga', 'Santander', 'Zona Franca Santander');
 
--- 2. Estados de Camper
-INSERT INTO Estado_camper (descripcion, estado_camper) 
-VALUES 
-('Estudiante activo en formación', 'Cursando'),
-('En proceso inicial de selección', 'En proceso de ingreso'),
-('Aceptado y pendiente de iniciar', 'Inscrito'),
-('Aprobado para comenzar formación', 'Aprobado'),
-('Completó programa exitosamente', 'Graduado'),
-('Retirado voluntariamente', 'Retirado'),
-('Expulsado por bajo rendimiento', 'Expulsado');
+-- 2. Estado_camper
+INSERT INTO Estado_camper (descripcion, estado_camper) VALUES
+('Iniciando proceso', 'En proceso de ingreso'),
+('Inscrito en programa', 'Inscrito'),
+('Aprobado para iniciar', 'Aprobado'),
+('Actualmente estudiando', 'Cursando'),
+('Finalización exitosa', 'Graduado'),
+('Expulsión disciplinaria', 'Expulsado'),
+('Retiro voluntario', 'Retirado');
 
--- 3. SGBDs
-INSERT INTO SistemaGestorBaseDatos (nombre_sgdb, descripcion) 
-VALUES 
-('SQL Server', 'SGBD principal para ruta C#'),
-('MySQL', 'SGBD principal para ruta Java'),
-('MongoDB', 'SGBD principal para ruta Node.js'),
-('PostgreSQL', 'SGBD alternativo para todas las rutas');
+-- 3. SistemaGestorBaseDatos
+INSERT INTO SistemaGestorBaseDatos (nombre_sgdb, descripcion) VALUES
+('MySQL', 'Sistema de gestión de bases de datos relacional'),
+('MongoDB', 'Base de datos NoSQL orientada a documentos'),
+('PostgreSQL', 'Sistema de gestión de bases de datos relacional-objeto');
 
--- 4. Rutas de Entrenamiento
-INSERT INTO RutaEntrenamiento (nombre_ruta, descripcion, id_sgdb_principal, id_sgdb_alternativo) 
-VALUES 
-('C#', 'Desarrollo de aplicaciones con C# y .NET Framework', 1, 4),
-('Java', 'Desarrollo de aplicaciones con Java y Spring Boot', 2, 4),
-('Node.js', 'Desarrollo web con JavaScript y Node.js', 3, 4);
+-- 4. AreaEntrenamiento
+INSERT INTO AreaEntrenamiento (nombre_area, descripcion) VALUES
+('Desarrollo Backend', 'Programación del lado del servidor'),
+('Desarrollo Frontend', 'Programación de interfaces de usuario'),
+('Base de Datos', 'Gestión y administración de bases de datos'),
+('Desarrollo Móvil', 'Programación de aplicaciones móviles');
 
--- 5. Módulos para todas las rutas (compartidos y específicos)
--- Módulos compartidos primero
-INSERT INTO Modulo (id_ruta, nombre_modulo, descripcion, duracion, secuencia) 
-VALUES
--- Módulos compartidos para ruta C# (id_ruta = 1)
-(1, 'Introducción a la programación', 'Conceptos básicos de algoritmos y lógica', 2, 1),
-(1, 'Python', 'Fundamentos de programación con Python', 4, 2),
-(1, 'HTML + CSS', 'Fundamentos de desarrollo web front-end', 4, 3),
-(1, 'Scrum y metodologías ágiles', 'Gestión de proyectos con metodologías ágiles', 1, 4),
-(1, 'GitHub y control de versiones', 'Gestión de código fuente y colaboración', 1, 5),
-(1, 'JavaScript básico', 'Programación web del lado del cliente', 4, 6),
-(1, 'Introducción al backend', 'Conceptos fundamentales de backend', 2, 7),
-(1, 'MySQL I', 'Fundamentos de bases de datos relacionales', 4, 8),
-(1, 'MySQL II', 'Consultas avanzadas y optimización', 4, 9),
-(1, 'C#', 'Programación orientada a objetos con C#', 4, 10),
-(1, 'PostgreSQL', 'Base de datos alternativa para .NET', 4, 11),
-(1, '.NET', 'Desarrollo de aplicaciones con .NET Framework', 4, 12),
+-- 5. Salon
+INSERT INTO Salon (nombre_salon, capacidad) VALUES
+('Apolo', 33),
+('Sputnik', 33),
+('Artemis', 33);
 
--- Módulos compartidos para ruta Java (id_ruta = 2)
-(2, 'Introducción a la programación', 'Conceptos básicos de algoritmos y lógica', 2, 1),
-(2, 'Python', 'Fundamentos de programación con Python', 4, 2),
-(2, 'HTML + CSS', 'Fundamentos de desarrollo web front-end', 4, 3),
-(2, 'Scrum y metodologías ágiles', 'Gestión de proyectos con metodologías ágiles', 1, 4),
-(2, 'GitHub y control de versiones', 'Gestión de código fuente y colaboración', 1, 5),
-(2, 'JavaScript básico', 'Programación web del lado del cliente', 4, 6),
-(2, 'Introducción al backend', 'Conceptos fundamentales de backend', 2, 7),
-(2, 'MySQL I', 'Fundamentos de bases de datos relacionales', 4, 8),
-(2, 'MySQL II', 'Consultas avanzadas y optimización', 4, 9),
-(2, 'Java', 'Programación orientada a objetos con Java', 4, 10),
-(2, 'PostgreSQL', 'Base de datos alternativa para Java', 4, 11),
-(2, 'Spring Boot', 'Desarrollo de aplicaciones con Spring Boot', 4, 12),
+-- 6. Horario_Clase
+INSERT INTO Horario_Clase (hora_inicio, hora_fin) VALUES
+('06:00:00', '10:00:00'),
+('10:00:00', '14:00:00'),
+('14:00:00', '18:00:00'),
+('18:00:00', '22:00:00');
 
--- Módulos compartidos para ruta Node.js (id_ruta = 3)
-(3, 'Introducción a la programación', 'Conceptos básicos de algoritmos y lógica', 2, 1),
-(3, 'Python', 'Fundamentos de programación con Python', 4, 2),
-(3, 'HTML + CSS', 'Fundamentos de desarrollo web front-end', 4, 3),
-(3, 'Scrum y metodologías ágiles', 'Gestión de proyectos con metodologías ágiles', 1, 4),
-(3, 'GitHub y control de versiones', 'Gestión de código fuente y colaboración', 1, 5),
-(3, 'JavaScript básico', 'Programación web del lado del cliente', 4, 6),
-(3, 'Introducción al backend', 'Conceptos fundamentales de backend', 2, 7),
-(3, 'MySQL I', 'Fundamentos de bases de datos relacionales', 4, 8),
-(3, 'MySQL II', 'Consultas avanzadas y optimización', 4, 9),
-(3, 'JavaScript avanzado', 'Programación avanzada con JavaScript', 4, 10),
-(3, 'MongoDB', 'Base de datos NoSQL para aplicaciones web', 4, 11),
-(3, 'Node.js y Express', 'Desarrollo backend con Node.js', 4, 12);
+-- 7. Skill
+INSERT INTO Skill (nombre_skill, descripcion) VALUES
+('Fundamentos de Programación', 'Conceptos básicos de programación y lógica'),
+('Desarrollo Web', 'Tecnologías y frameworks web'),
+('Bases de Datos', 'Diseño y gestión de bases de datos'),
+('Backend', 'Desarrollo del lado del servidor'),
+('Frontend', 'Desarrollo de interfaces de usuario');
 
--- 6. Salones
-INSERT INTO Salon (nombre_salon, ubicacion) 
-VALUES 
-('Sputnik', 'Edificio principal, primer piso'),
-('Apolo', 'Edificio principal, segundo piso'),
-('Artemis', 'Edificio anexo, primer piso'),
-('Orion', 'Edificio anexo, segundo piso'),
-('Voyager', 'Edificio principal, tercer piso');
-
--- 7. Horarios de Clase
-INSERT INTO Horario_Clase (descripcion, hora_inicio, hora_fin, dia_semana) 
-VALUES 
-('Mañana temprano', '06:00:00', '09:00:00', 'Lunes'),
-('Mañana temprano', '06:00:00', '09:00:00', 'Martes'),
-('Mañana temprano', '06:00:00', '09:00:00', 'Miercoles'),
-('Mañana temprano', '06:00:00', '09:00:00', 'Jueves'),
-('Mañana temprano', '06:00:00', '09:00:00', 'Viernes'),
-('Medio día', '11:00:00', '14:00:00', 'Lunes'),
-('Medio día', '11:00:00', '14:00:00', 'Martes'),
-('Medio día', '11:00:00', '14:00:00', 'Miercoles'),
-('Medio día', '11:00:00', '14:00:00', 'Jueves'),
-('Medio día', '11:00:00', '14:00:00', 'Viernes');
-
--- 8. Áreas de Entrenamiento
-INSERT INTO AreaEntrenamiento (nombre_area, descripcion, capacidad_maxima, estado, ocupacion_actual) 
-VALUES 
-('Área desarrollo .NET', 'Especialización en C# y .NET', 33, 'Activo', 25),
-('Área desarrollo Java', 'Especialización en Java y Spring', 33, 'Activo', 30),
-('Área desarrollo NodeJS', 'Especialización en JavaScript y Node', 33, 'Activo', 28),
-('Área Data Science', 'Especialización en análisis de datos', 33, 'Activo', 20),
-('Área DevOps', 'Especialización en CI/CD y Cloud', 33, 'Inactivo', 0);
-
--- 9. Competencias
-INSERT INTO Competencia (nombre_competencia, descripcion) 
-VALUES 
-('C#', 'Dominio de lenguaje C# y POO'),
-('.NET', 'Experiencia en desarrollo con .NET Framework'),
-('Java', 'Dominio del lenguaje Java y POO'),
-('Spring Boot', 'Desarrollo de aplicaciones con Spring'),
-('JavaScript', 'Programación frontend y backend con JavaScript'),
-('Node.js', 'Desarrollo de APIs con Express y Node'),
-('SQL Server', 'Administración y desarrollo con SQL Server'),
-('MySQL', 'Diseño y optimización de bases de datos MySQL'),
-('MongoDB', 'Desarrollo con bases de datos NoSQL'),
-('PostgreSQL', 'Conocimientos avanzados en PostgreSQL'),
-('Metodologías Ágiles', 'Implementación de Scrum y Kanban'),
-('AWS', 'Despliegue de aplicaciones en la nube'),
-('Azure', 'Servicios cloud de Microsoft'),
-('DevOps', 'Integración y despliegue continuo');
-
--- 10. Entrenadores
-INSERT INTO Entrenador (nombres, apellidos, email, id_campus) 
-VALUES 
-('Johlver Jose', 'Pardo', 'johlver.pardo@campuslands.com', 1),
-('Miguel', 'Martinez Lopez', 'miguel.martinez@campuslands.com', 1),
-('Carolina', 'Sanchez Ruiz', 'carolina.sanchez@campuslands.com', 1),
-('Fernando', 'Gomez Diaz', 'fernando.gomez@campuslands.com', 1),
-('Veronica', 'Rodriguez Perez', 'veronica.rodriguez@campuslands.com', 2),
-('Juan Carlos', 'Torres Silva', 'juan.torres@campuslands.com', 3);
-
--- 11. Teléfonos de Entrenadores
-INSERT INTO Telefono_Entrenador (id_entrenador, numero, tipo, es_principal) 
-VALUES 
-(1, '3151234567', 'movil', TRUE),
-(1, '6076123456', 'fijo', FALSE),
-(2, '3162345678', 'movil', TRUE),
-(3, '3173456789', 'movil', TRUE),
-(4, '3184567890', 'movil', TRUE),
-(5, '3195678901', 'movil', TRUE),
-(6, '3206789012', 'movil', TRUE);
-
--- 12. Competencias de Entrenadores
-INSERT INTO Entrenador_Competencia (id_entrenador, id_competencia) 
-VALUES 
--- Johlver - especialista en .NET
-(1, 1), (1, 2), (1, 7), (1, 10), (1, 11),
--- Miguel - especialista en Java
-(2, 3), (2, 4), (2, 8), (2, 10), (2, 11),
--- Carolina - especialista en Node.js
-(3, 5), (3, 6), (3, 9), (3, 11), (3, 12),
--- Fernando - especialista en .NET y Azure
-(4, 1), (4, 2), (4, 7), (4, 11), (4, 13),
--- Veronica - especialista en Java y AWS
-(5, 3), (5, 4), (5, 8), (5, 11), (5, 12),
--- Juan Carlos - especialista en Node.js y DevOps
-(6, 5), (6, 6), (6, 9), (6, 11), (6, 14);
-
--- 13. Estado de Inscripción
-INSERT INTO Estado_Inscripcion (descripcion, estado_inscripcion) 
-VALUES 
-('Inscripción activa, camper cursando', 'Activa'),
-('Inscripción completada exitosamente', 'Completada'),
+-- 8. Estado_Inscripcion
+INSERT INTO Estado_Inscripcion (descripcion, estado_inscripcion) VALUES
+('Inscripción en curso', 'Activa'),
+('Inscripción finalizada', 'Completada'),
 ('Inscripción cancelada', 'Cancelada');
 
--- 14. Grupos de Campers
-INSERT INTO Grupo_Campers (nombre_grupo, id_ruta, fecha_creacion) 
-VALUES 
-('J1', 1, '2023-10-01'), -- Grupo de C#
-('J2', 1, '2023-10-01'), -- Grupo de C#
-('J3', 2, '2023-10-01'), -- Grupo de Java
-('J4', 2, '2023-10-01'), -- Grupo de Java
-('N1', 3, '2023-10-01'), -- Grupo de Node.js
-('N2', 3, '2023-10-01'); -- Grupo de Node.js
+-- 9. Competencia
+INSERT INTO Competencia (nombre_competencia, descripcion) VALUES
+('Lógica de Programación', 'Capacidad de resolver problemas mediante algoritmos'),
+('Diseño Web', 'Habilidades en diseño y desarrollo web'),
+('Gestión de Datos', 'Manejo y administración de bases de datos'),
+('Arquitectura Backend', 'Diseño de sistemas del lado del servidor');
 
--- 15. Asignación de Entrenadores a Áreas
-INSERT INTO Entrenador_Area (id_entrenador, id_area) 
-VALUES 
-(1, 1), -- Johlver - Área .NET
-(2, 2), -- Miguel - Área Java
-(3, 3), -- Carolina - Área Node.js
-(4, 1), -- Fernando - Área .NET
-(5, 2), -- Veronica - Área Java
-(6, 3); -- Juan Carlos - Área Node.js
+-- 10. Usuario (incluyendo trainers y admin)
+INSERT INTO Usuario (username, password, rol) VALUES
+('admin', '$2a$12$LQV3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj4J/vC5hpFm', 'admin'),
+('trainer1', '$2a$12$LQV3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj4J/vC5hpFm', 'trainer'),
+('trainer2', '$2a$12$LQV3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj4J/vC5hpFm', 'trainer');
 
--- 16. Asignación de Entrenadores a Rutas
-INSERT INTO Asignacion_Entrenador_Ruta (id_entrenador, id_ruta, id_horario) 
-VALUES 
-(1, 1, 1), -- Johlver - Ruta C# - Mañana lunes
-(1, 1, 2), -- Johlver - Ruta C# - Mañana martes
-(1, 1, 3), -- Johlver - Ruta C# - Mañana miércoles
-(1, 1, 4), -- Johlver - Ruta C# - Mañana jueves
-(1, 1, 5), -- Johlver - Ruta C# - Mañana viernes
-(2, 2, 1), -- Miguel - Ruta Java - Mañana lunes
-(3, 3, 6); -- Carolina - Ruta Node.js - Medio día lunes
+-- 11. Entrenador
+INSERT INTO Entrenador (nombres, apellidos, especialidad) VALUES
+('Miguel', 'Hernández', 'Desarrollo Backend'),
+('Ana', 'García', 'Desarrollo Frontend'),
+('Carlos', 'Martínez', 'Base de Datos');
 
--- 17. Asignación de salones
-INSERT INTO Asignacion_Salon_Horario (id_salon, id_horario, id_area) 
-VALUES 
-(2, 1, 1), -- Apolo - Mañana lunes - Área .NET
-(2, 2, 1), -- Apolo - Mañana martes - Área .NET
-(2, 3, 1), -- Apolo - Mañana miércoles - Área .NET
-(2, 4, 1), -- Apolo - Mañana jueves - Área .NET
-(2, 5, 1), -- Apolo - Mañana viernes - Área .NET
-(1, 1, 2), -- Sputnik - Mañana lunes - Área Java
-(3, 6, 3); -- Artemis - Medio día lunes - Área Node.js
+-- 12. RutaEntrenamiento
+INSERT INTO RutaEntrenamiento (nombre_ruta, descripcion, id_sgdb_principal, id_sgdb_alternativo) VALUES
+('NodeJS', 'Ruta de desarrollo backend con Node.js', 1, 2),
+('Java Spring', 'Ruta de desarrollo backend con Java', 1, 3),
+('Python Django', 'Ruta de desarrollo backend con Python', 3, 1);
 
--- 18. Disponibilidad de Entrenadores
-INSERT INTO Disponibilidad_Entrenador (id_entrenador, dia_semana, hora_inicio, hora_fin) 
-VALUES 
-(1, 'Lunes', '06:00:00', '15:00:00'),
-(1, 'Martes', '06:00:00', '15:00:00'),
-(1, 'Miercoles', '06:00:00', '15:00:00'),
-(1, 'Jueves', '06:00:00', '15:00:00'),
-(1, 'Viernes', '06:00:00', '15:00:00'),
-(2, 'Lunes', '06:00:00', '15:00:00'),
-(3, 'Lunes', '10:00:00', '18:00:00');
+-- Corrección de RutaEntrenamiento
+INSERT INTO RutaEntrenamiento (nombre_ruta, descripcion, id_sgdb_principal, id_sgdb_alternativo) VALUES
+('NodeJS', 'Desarrollo backend con Node.js y Express', 1, 2),
+('NetCore', 'Desarrollo backend con .NET Core', 1, 3),
+('Java Spring Boot', 'Desarrollo backend con Spring Boot', 1, 3);
 
--- 19. Asignaciones Entrenador-Grupo
-INSERT INTO Asignacion_Entrenador_Grupo (id_entrenador, id_grupo, id_area, fecha_inicio) 
-VALUES 
-(1, 1, 1, '2023-10-01'), -- Johlver - J1 (C#) - Área .NET
-(4, 2, 1, '2023-10-01'), -- Fernando - J2 (C#) - Área .NET
-(2, 3, 2, '2023-10-01'), -- Miguel - J3 (Java) - Área Java
-(5, 4, 2, '2023-10-01'), -- Veronica - J4 (Java) - Área Java
-(3, 5, 3, '2023-10-01'), -- Carolina - N1 (Node.js) - Área Node.js
-(6, 6, 3, '2023-10-01'); -- Juan Carlos - N2 (Node.js) - Área Node.js
+-- Corrección de Entrenador
+INSERT INTO Entrenador (nombres, apellidos, especialidad) VALUES
+('Johlver', 'Pardo', 'Desarrollo Backend'),
+('Miguel', 'Hernández', 'Desarrollo Backend'),
+('Ana', 'García', 'Desarrollo Frontend');
 
--- 20. Campers (incluyendo a Fabian)
-INSERT INTO Camper (numero_identificacion, nombres, apellidos, id_campus, id_estado, nivel_riesgo) 
-VALUES 
--- Grupo J1 (C#)
-('1099739979', 'Fabian Alexander', 'Galan Calderon', 1, 1, 'Bajo'),
-('1095123456', 'Laura Patricia', 'Mendez Suarez', 1, 1, 'Bajo'),
-('1097234567', 'Carlos Andres', 'Perez Rodriguez', 1, 1, 'Medio'),
-('1098345678', 'Maria Alejandra', 'Garcia Torres', 1, 1, 'Bajo'),
-('1099456789', 'Daniel Eduardo', 'Martinez Lopez', 1, 1, 'Bajo'),
--- Grupo J2 (C#)
-('1095567890', 'Valentina', 'Hernandez Diaz', 1, 1, 'Bajo'),
-('1096678901', 'Juan Sebastian', 'Gomez Vargas', 1, 1, 'Alto'),
-('1097789012', 'Sofia', 'Torres Ruiz', 1, 1, 'Bajo'),
-('1098890123', 'Diego Alejandro', 'Ramirez Ochoa', 1, 1, 'Medio'),
-('1099901234', 'Isabella', 'Sanchez Moreno', 1, 1, 'Bajo'),
--- Grupo J3 (Java)
-('1095012345', 'Santiago', 'Rodriguez Parra', 1, 1, 'Bajo'),
-('1096123456', 'Gabriela', 'Jimenez Carvajal', 1, 1, 'Medio'),
-('1097234567', 'Nicolas', 'Ortiz Quintero', 1, 1, 'Bajo'),
-('1098345678', 'Valeria', 'Castro Bernal', 1, 1, 'Bajo'),
-('1099456789', 'Mateo', 'Rios Camacho', 1, 1, 'Bajo');
+-- Entrenador_Area
+INSERT INTO Entrenador_Area (id_entrenador, id_area) VALUES
+(1, 1), -- Johlver - Backend
+(2, 1), -- Miguel - Backend
+(3, 2); -- Ana - Frontend
 
--- 21. Acudientes
-INSERT INTO Acudiente (id_camper, nombres, apellidos, telefono, email, parentesco) 
-VALUES 
-(1, 'Otilia', 'Calderon Celis', '3027215931', 'printart2008@gmail.com', 'madre'),
-(2, 'Jorge', 'Mendez Roa', '3151234567', 'jorge.mendez@gmail.com', 'padre'),
-(3, 'Clara', 'Rodriguez Gomez', '3162345678', 'clara.rodriguez@gmail.com', 'madre'),
-(4, 'Mario', 'Garcia Polo', '3173456789', 'mario.garcia@gmail.com', 'padre'),
-(5, 'Lucia', 'Lopez Mora', '3184567890', 'lucia.lopez@gmail.com', 'madre');
+-- Asignacion_Entrenador_Ruta
+INSERT INTO Asignacion_Entrenador_Ruta (id_entrenador, id_ruta, id_horario) VALUES
+(1, 1, 1), -- Johlver - NodeJS - 6:00-10:00
+(1, 2, 2), -- Johlver - NetCore - 10:00-14:00
+(2, 3, 3); -- Miguel - Spring Boot - 14:00-18:00
 
--- 22. Direcciones
-INSERT INTO Direccion (id_camper, calle, ciudad, departamento, codigo_postal, pais) 
-VALUES 
-(1, 'Calle 56 #23-45', 'Bucaramanga', 'Santander', '680001', 'Colombia'),
-(2, 'Carrera 27 #15-30', 'Bucaramanga', 'Santander', '680002', 'Colombia'),
-(3, 'Avenida 33 #45-67', 'Bucaramanga', 'Santander', '680003', 'Colombia'),
-(4, 'Calle 45 #12-34', 'Bucaramanga', 'Santander', '680004', 'Colombia'),
-(5, 'Carrera 15 #56-78', 'Bucaramanga', 'Santander', '680005', 'Colombia');
+-- Asignacion_Salon_Horario
+INSERT INTO Asignacion_Salon_Horario (id_salon, id_horario, id_area) VALUES
+(1, 1, 1), -- Apolo - 6:00-10:00 - Backend
+(2, 2, 1), -- Sputnik - 10:00-14:00 - Backend
+(3, 3, 2); -- Artemis - 14:00-18:00 - Frontend
 
--- 23. Teléfonos de Campers
-INSERT INTO Telefono_Camper (id_camper, numero, tipo, es_principal) 
-VALUES 
-(1, '3157891234', 'movil', TRUE),
-(1, '6076123456', 'fijo', FALSE),
-(2, '3168902345', 'movil', TRUE),
-(3, '3179013456', 'movil', TRUE),
-(4, '3180124567', 'movil', TRUE),
-(5, '3191235678', 'movil', TRUE);
+-- Disponibilidad_Entrenador
+INSERT INTO Disponibilidad_Entrenador (id_entrenador, dia_semana, hora_inicio, hora_fin) VALUES
+(1, 'Lunes', '06:00:00', '14:00:00'),
+(1, 'Martes', '06:00:00', '14:00:00'),
+(1, 'Miercoles', '06:00:00', '14:00:00'),
+(1, 'Jueves', '06:00:00', '14:00:00'),
+(1, 'Viernes', '06:00:00', '14:00:00'),
+(2, 'Lunes', '14:00:00', '22:00:00'),
+(2, 'Martes', '14:00:00', '22:00:00'),
+(2, 'Miercoles', '14:00:00', '22:00:00');
 
--- 24. Asignación de Campers a Grupos
-INSERT INTO Grupo_Camper_Asignacion (id_grupo, id_camper) 
-VALUES 
-(1, 1), -- Fabian en grupo J1
-(1, 2), -- Laura en grupo J1
-(1, 3), -- Carlos en grupo J1
-(1, 4), -- Maria en grupo J1
-(1, 5), -- Daniel en grupo J1
-(2, 6), -- Valentina en grupo J2
-(2, 7), -- Juan en grupo J2
-(2, 8), -- Sofia en grupo J2
-(2, 9), -- Diego en grupo J2
-(2, 10), -- Isabella en grupo J2
-(3, 11), -- Santiago en grupo J3
-(3, 12), -- Gabriela en grupo J3
-(3, 13), -- Nicolas en grupo J3
-(3, 14), -- Valeria en grupo J3
-(3, 15); -- Mateo en grupo J3
+-- Skills por ruta
+INSERT INTO Skill (nombre_skill, descripcion) VALUES
+('JavaScript Fundamentals', 'Fundamentos de JavaScript y ES6+'),
+('Node.js Core', 'Conceptos core de Node.js'),
+('Express.js', 'Framework web para Node.js'),
+('C# Fundamentals', 'Fundamentos de C# y .NET'),
+('ASP.NET Core', 'Framework web para .NET'),
+('Java Core', 'Fundamentos de Java'),
+('Spring Framework', 'Framework empresarial para Java'),
+('Spring Boot', 'Framework simplificado de Spring');
 
--- 25. Inscripciones
-INSERT INTO Inscripcion (id_camper, id_ruta, fecha_inscripcion, id_estado_inscripcion) 
-VALUES 
-(1, 1, '2023-09-15', 1), -- Fabian - C#
-(2, 1, '2023-09-15', 1), -- Laura - C#
-(3, 1, '2023-09-16', 1), -- Carlos - C#
-(4, 1, '2023-09-16', 1), -- Maria - C#
-(5, 1, '2023-09-17', 1), -- Daniel - C#
-(6, 1, '2023-09-17', 1), -- Valentina - C#
-(7, 1, '2023-09-18', 1), -- Juan - C#
-(8, 1, '2023-09-18', 1), -- Sofia - C#
-(9, 1, '2023-09-19', 1), -- Diego - C#
-(10, 1, '2023-09-19', 1), -- Isabella - C#
-(11, 2, '2023-09-15', 1), -- Santiago - Java
-(12, 2, '2023-09-15', 1), -- Gabriela - Java
-(13, 2, '2023-09-16', 1), -- Nicolas - Java
-(14, 2, '2023-09-16', 1), -- Valeria - Java
-(15, 2, '2023-09-17', 1); -- Mateo - Java
+-- Ruta_Skill (asociación de skills a rutas)
+INSERT INTO Ruta_Skill (id_ruta, id_skill) VALUES
+(1, 1), -- NodeJS - JavaScript Fundamentals
+(1, 2), -- NodeJS - Node.js Core
+(1, 3), -- NodeJS - Express.js
+(2, 4), -- NetCore - C# Fundamentals
+(2, 5), -- NetCore - ASP.NET Core
+(3, 6), -- Spring Boot - Java Core
+(3, 7), -- Spring Boot - Spring Framework
+(3, 8); -- Spring Boot - Spring Boot
 
--- 26. Historial de Estado Camper
-INSERT INTO Historial_Estado_Camper (id_camper, id_estado, fecha_cambio, observaciones) 
-VALUES 
-(1, 2, '2023-09-01', 'Inicio proceso de selección'),
-(1, 3, '2023-09-10', 'Inscrito tras prueba de admisión'),
-(1, 1, '2023-10-01', 'Inicio de clases'),
-(2, 2, '2023-09-01', 'Inicio proceso de selección'),
-(2, 3, '2023-09-10', 'Inscrito tras prueba de admisión'),
-(2, 1, '2023-10-01', 'Inicio de clases');
+-- Módulos por Skill
+INSERT INTO Modulo (id_skill, nombre_modulo, descripcion, duracion) VALUES
+-- JavaScript/Node.js
+(1, 'Introducción a JavaScript', 'Fundamentos del lenguaje', 40),
+(1, 'ES6+ Features', 'Características modernas de JS', 30),
+(2, 'Node.js Basics', 'Fundamentos de Node.js', 40),
+(2, 'Async Programming', 'Programación asíncrona', 30),
+(3, 'Express Basics', 'Fundamentos de Express', 40),
+(3, 'REST APIs', 'Desarrollo de APIs REST', 30),
 
--- 27. Sesiones de Clase (para primeros módulos)
-INSERT INTO Sesion_Clase (id_modulo, id_horario, fecha_sesion, tema) 
-VALUES 
--- Introducción a la programación (C#)
-(1, 1, '2023-10-02', 'Introducción al pensamiento algorítmico'),
-(1, 2, '2023-10-03', 'Estructuras de control'),
-(1, 3, '2023-10-04', 'Estructuras de datos básicas'),
-(1, 4, '2023-10-05', 'Funciones y procedimientos'),
-(1, 5, '2023-10-06', 'Evaluación final módulo'),
--- Python (C#)
-(2, 1, '2023-10-09', 'Introducción a Python'),
-(2, 2, '2023-10-10', 'Variables y tipos de datos'),
-(2, 3, '2023-10-11', 'Estructuras de control en Python'),
-(2, 4, '2023-10-12', 'Colecciones: listas y diccionarios'),
-(2, 5, '2023-10-13', 'Funciones en Python');
+-- .NET
+(4, 'C# Basics', 'Fundamentos de C#', 40),
+(4, 'OOP in C#', 'Programación orientada a objetos', 30),
+(5, 'ASP.NET Core Basics', 'Fundamentos de ASP.NET Core', 40),
+(5, 'Web APIs', 'Desarrollo de APIs web', 30),
 
--- 28. Material Educativo
-INSERT INTO Material_Educativo (id_modulo, titulo, descripcion, url_material) 
-VALUES 
-(1, 'Fundamentos de algoritmos', 'Introducción a algoritmos y pensamiento lógico', 'https://campuslands.com/materiales/intro/algoritmos.pdf'),
-(1, 'Diagramas de flujo', 'Representación gráfica de algoritmos', 'https://campuslands.com/materiales/intro/diagramas_flujo.pdf'),
-(2, 'Introducción a Python', 'Conceptos básicos del lenguaje Python', 'https://campuslands.com/materiales/python/introduccion.pdf'),
-(2, 'Estructuras de datos en Python', 'Listas, tuplas y diccionarios', 'https://campuslands.com/materiales/python/estructuras_datos.pdf'),
-(10, 'Fundamentos de C#', 'Introducción a C# y .NET', 'https://campuslands.com/materiales/csharp/fundamentos.pdf');
+-- Java/Spring
+(6, 'Java Basics', 'Fundamentos de Java', 40),
+(6, 'Java OOP', 'Programación orientada a objetos', 30),
+(7, 'Spring Core', 'Fundamentos de Spring', 40),
+(8, 'Spring Boot Basics', 'Desarrollo con Spring Boot', 30);
 
--- 29. Evaluaciones (módulos iniciales)
-INSERT INTO Evaluacion (id_inscripcion, id_modulo, fecha_evaluacion, nota_teorica, nota_practica, nota_trabajos_quizzes, calificacion_final) 
-VALUES 
--- Fabian
-(1, 1, '2023-10-06', 85.00, 80.00, 90.00, 82.50), -- Intro programación
-(1, 2, '2023-11-03', 90.00, 85.00, 95.00, 87.50), -- Python
--- Laura
-(2, 1, '2023-10-06', 95.00, 90.00, 95.00, 92.00), -- Intro programación
-(2, 2, '2023-11-03', 90.00, 88.00, 92.00, 89.20); -- Python
+-- Ejemplo de Grupo_Campers
+INSERT INTO Grupo_Campers (nombre_grupo, id_ruta, fecha_creacion) VALUES
+('Artemis 2024-1', 1, '2024-01-15'),
+('Apolo 2024-1', 2, '2024-01-15'),
+('Sputnik 2024-1', 3, '2024-01-15');
 
--- 30. Usuarios
-INSERT INTO Usuario (nombre_usuario, contrasena, rol, email) 
-VALUES 
-('fabian.galan', '$2a$12$AbCdEfGhIjKlMnOpQrStUvWxYz012345678901234', 'camper', 'fabian.galan@campuslands.edu.co'),
-('laura.mendez', '$2a$12$AbCdEfGhIjKlMnOpQrStUvWxYz023456789012345', 'camper', 'laura.mendez@campuslands.edu.co'),
-('johlver.pardo', '$2a$12$AbCdEfGhIjKlMnOpQrStUvWxYz098765432109876', 'entrenador', 'johlver.pardo@campuslands.com'),
-('miguel.martinez', '$2a$12$AbCdEfGhIjKlMnOpQrStUvWxYz087654321098765', 'entrenador', 'miguel.martinez@campuslands.com'),
-('admin', '$2a$12$AbCdEfGhIjKlMnOpQrStUvWxYz076543210987654', 'admin', 'admin@campuslands.com');
+-- Campers con diferentes estados y niveles de riesgo
+INSERT INTO Camper (numero_identificacion, nombres, apellidos, id_campus, id_estado, nivel_riesgo) VALUES
+-- Campers Inscritos
+('1001234567', 'Juan', 'Pérez', 1, 2, 'Bajo'),
+('1001234568', 'María', 'González', 1, 2, 'Medio'),
+('1001234569', 'Carlos', 'Rodríguez', 1, 2, 'Alto'),
+-- Campers Aprobados
+('1001234570', 'Ana', 'Martínez', 1, 3, 'Bajo'),
+('1001234571', 'Luis', 'Sánchez', 1, 3, 'Medio'),
+-- Campers Cursando
+('1001234572', 'Pedro', 'López', 1, 4, 'Bajo'),
+('1001234573', 'Laura', 'Torres', 1, 4, 'Alto'),
+-- Campers Graduados
+('1001234574', 'Diego', 'Ramírez', 1, 5, 'Bajo'),
+('1001234575', 'Sofía', 'García', 1, 5, 'Bajo'),
+-- Campers Expulsados/Retirados
+('1001234576', 'Mario', 'Díaz', 1, 6, 'Alto'),
+('1001234577', 'Carmen', 'Vargas', 1, 7, 'Alto'),
+-- Campers sin ruta asignada
+('1001234578', 'Felipe', 'Castro', 1, 1, 'Medio'),
+('1001234579', 'Isabella', 'Morales', 1, 1, 'Bajo'),
+-- Más campers cursando con diferentes niveles de riesgo
+('1001234580', 'Ricardo', 'Gómez', 1, 4, 'Alto'),
+('1001234581', 'Valentina', 'Herrera', 1, 4, 'Medio'),
+('1001234582', 'Daniel', 'Parra', 1, 4, 'Bajo'),
+-- Más graduados para estadísticas
+('1001234583', 'Carolina', 'Rojas', 1, 5, 'Bajo'),
+('1001234584', 'Andrés', 'Silva', 1, 5, 'Bajo'),
+('1001234585', 'Camila', 'Ortiz', 1, 5, 'Bajo'),
+-- Más casos de bajo rendimiento
+('1001234586', 'Fernando', 'Ruiz', 1, 4, 'Alto'),
+('1001234587', 'Patricia', 'Mendoza', 1, 4, 'Alto'),
+('1001234588', 'Gabriel', 'Castro', 1, 4, 'Alto');
 
--- 31. Notificaciones
-INSERT INTO Notificacion (id_usuario, mensaje, fecha_notificacion, leido) 
-VALUES 
-(1, 'Bienvenido a CampusLands. Tu camino hacia el desarrollo de software comienza ahora.', '2023-10-01 08:00:00', TRUE),
-(1, 'Recuerda completar el cuestionario inicial antes del viernes.', '2023-10-02 09:30:00', TRUE),
-(1, 'El material del módulo de Python ya está disponible en la plataforma.', '2023-10-09 08:15:00', TRUE),
-(1, 'Evaluación de Python programada para el 3 de noviembre.', '2023-10-27 10:00:00', FALSE),
-(2, 'Bienvenida a CampusLands. Tu camino hacia el desarrollo de software comienza ahora.', '2023-10-01 08:00:00', TRUE);
+-- Acudientes
+INSERT INTO Acudiente (id_camper, nombres, apellidos, telefono, email, parentesco) VALUES
+(1, 'Jorge', 'Pérez', '3101234567', 'jorge.perez@email.com', 'Padre'),
+(2, 'Rosa', 'González', '3101234568', 'rosa.gonzalez@email.com', 'Madre'),
+(3, 'Manuel', 'Rodríguez', '3101234569', 'manuel.rodriguez@email.com', 'Tío'),
+(4, 'Martha', 'Martínez', '3101234570', 'martha.martinez@email.com', 'Madre');
 
--- 32. Notificaciones para Trainers
-INSERT INTO Notificacion_Trainer (id_entrenador, id_ruta, mensaje, fecha_notificacion, leido) 
-VALUES 
-(1, 1, 'Asignación confirmada para grupo J1 en ruta C#.', '2023-09-25 10:00:00', TRUE),
-(1, 1, 'Por favor suba el material para el módulo de Python antes del viernes.', '2023-10-04 08:30:00', TRUE),
-(1, 1, 'Reunión de seguimiento el lunes 16 de octubre a las 3:00 PM.', '2023-10-13 14:00:00', FALSE),
-(2, 2, 'Asignación confirmada para grupo J3 en ruta Java.', '2023-09-25 10:15:00', TRUE);
+-- Teléfonos de Campers (algunos con múltiples números)
+INSERT INTO Telefono_Camper (id_camper, numero, tipo, es_principal) VALUES
+(1, '3201234567', 'movil', TRUE),
+(1, '3201234568', 'fijo', FALSE),
+(2, '3201234569', 'movil', TRUE),
+(2, '3201234570', 'trabajo', FALSE),
+(3, '3201234571', 'movil', TRUE);
 
--- 33. Asistencia (para sesiones recientes)
-INSERT INTO Asistencia (id_camper, id_sesion, fecha_registro, estado_asistencia, hora_llegada) 
-VALUES 
--- Fabian
-(1, 1, '2023-10-02 05:58:00', 'Presente', '05:58:00'),
-(1, 2, '2023-10-03 06:05:00', 'Presente', '06:05:00'),
-(1, 3, '2023-10-04 06:20:00', 'Tardanza', '06:20:00'),
-(1, 4, '2023-10-05 05:55:00', 'Presente', '05:55:00'),
-(1, 5, '2023-10-06 05:50:00', 'Presente', '05:50:00'),
-(1, 6, '2023-10-09 05:57:00', 'Presente', '05:57:00'),
--- Laura
-(2, 1, '2023-10-02 05:45:00', 'Presente', '05:45:00'),
-(2, 2, '2023-10-03 05:50:00', 'Presente', '05:50:00'),
-(2, 3, '2023-10-04 05:55:00', 'Presente', '05:55:00'),
-(2, 4, '2023-10-05 05:45:00', 'Presente', '05:45:00'),
-(2, 5, '2023-10-06 05:40:00', 'Presente', '05:40:00'),
-(2, 6, '2023-10-09 05:47:00', 'Presente', '05:47:00');
+-- Inscripciones
+INSERT INTO Inscripcion (id_camper, id_ruta, fecha_inscripcion, id_estado_inscripcion) VALUES
+-- NodeJS
+(1, 1, '2024-01-15', 1),
+(2, 1, '2024-01-15', 1),
+-- NetCore
+(3, 2, '2024-01-15', 1),
+(4, 2, '2024-01-15', 1),
+-- Spring Boot
+(5, 3, '2024-01-15', 1),
+(6, 3, '2024-01-15', 1);
 
--- 34. Egresados (para campers que ya completaron el programa)
-INSERT INTO Egresado (id_camper, fecha_graduacion, comentarios) 
-VALUES 
-(5, '2024-05-15', 'Excelente desempeño, contratado por empresa asociada.');
+-- Evaluaciones (con el sistema 30% teoría, 60% práctica, 10% quizzes)
+INSERT INTO Evaluacion (id_inscripcion, id_modulo, fecha_evaluacion, nota_teorica, nota_practica, nota_trabajos_quizzes) VALUES
+-- Camper 1 - NodeJS
+(1, 1, '2024-02-01', 85, 78, 90), -- JavaScript Fundamentals
+(1, 2, '2024-02-15', 75, 82, 85), -- ES6+ Features
+-- Camper 2 - NodeJS
+(2, 1, '2024-02-01', 55, 45, 60), -- JavaScript Fundamentals (bajo rendimiento)
+(2, 2, '2024-02-15', 65, 58, 70), -- ES6+ Features
+-- Camper 3 - NetCore
+(3, 7, '2024-02-01', 90, 88, 95), -- C# Basics
+(3, 8, '2024-02-15', 85, 92, 88), -- OOP in C#
+-- Camper 4 - NetCore (bajo rendimiento)
+(4, 7, '2024-02-01', 50, 55, 45),
+(4, 8, '2024-02-15', 45, 52, 48),
+-- Evaluaciones NodeJS (más detalladas)
+(1, 3, '2024-03-01', 88, 92, 85), -- Express Basics
+(1, 4, '2024-03-15', 82, 85, 88), -- Async Programming
+(2, 3, '2024-03-01', 45, 52, 48), -- Express Basics (bajo rendimiento)
+(2, 4, '2024-03-15', 55, 48, 50), -- Async Programming (bajo rendimiento)
+
+-- Evaluaciones NetCore (rendimiento variado)
+(3, 9, '2024-03-01', 95, 92, 98), -- ASP.NET Core Basics
+(3, 10, '2024-03-15', 88, 90, 92), -- Web APIs
+(4, 9, '2024-03-01', 58, 55, 52), -- ASP.NET Core Basics (bajo rendimiento)
+(4, 10, '2024-03-15', 52, 48, 50), -- Web APIs (bajo rendimiento)
+
+-- Evaluaciones Spring Boot
+(5, 11, '2024-03-01', 78, 82, 80), -- Java Basics
+(5, 12, '2024-03-15', 85, 88, 82), -- Java OOP
+(6, 13, '2024-03-01', 92, 95, 90), -- Spring Core
+(6, 14, '2024-03-15', 88, 92, 85); -- Spring Boot Basics
+
+-- Grupo_Campers y asignaciones
+INSERT INTO Grupo_Camper_Asignacion (id_grupo, id_camper, fecha_asignacion) VALUES
+(1, 1, '2024-01-16'), -- Artemis 2024-1
+(1, 2, '2024-01-16'),
+(2, 3, '2024-01-16'), -- Apolo 2024-1
+(2, 4, '2024-01-16'),
+(3, 5, '2024-01-16'), -- Sputnik 2024-1
+(3, 6, '2024-01-16');
+
+-- Asignación de entrenadores a grupos
+INSERT INTO Asignacion_Entrenador_Grupo (id_entrenador, id_grupo, id_area, fecha_inicio, fecha_fin) VALUES
+(1, 1, 1, '2024-01-16', '2024-06-16'), -- Johlver - Artemis - Backend
+(2, 2, 1, '2024-01-16', '2024-06-16'), -- Miguel - Apolo - Backend
+(3, 3, 2, '2024-01-16', '2024-06-16'); -- Ana - Sputnik - Frontend
+
+-- Material Educativo
+INSERT INTO Material_Educativo (id_modulo, titulo, descripcion) VALUES
+(1, 'Introducción a JavaScript', 'Fundamentos básicos de JS'),
+(2, 'ES6+ Features', 'Características modernas de JS'),
+(7, 'C# Basics', 'Fundamentos de C#'),
+(8, 'OOP in C#', 'Programación orientada a objetos en C#'),
+(3, 'Express.js Fundamentals', 'Conceptos básicos de Express'),
+(4, 'Async JavaScript', 'Programación asíncrona en JS'),
+(9, 'ASP.NET Core MVC', 'Desarrollo web con ASP.NET Core'),
+(11, 'Java Fundamentals', 'Fundamentos de Java'),
+(13, 'Spring Framework', 'Introducción a Spring');
+
+-- Sesiones de clase
+INSERT INTO Sesion_Clase (id_modulo, id_horario, fecha_sesion, tema) VALUES
+(1, 1, '2024-02-01', 'Variables y tipos de datos en JS'),
+(1, 1, '2024-02-02', 'Estructuras de control'),
+(2, 2, '2024-02-15', 'Arrow functions y destructuring'),
+(7, 3, '2024-02-01', 'Introducción a C#'),
+(8, 3, '2024-02-15', 'Clases y objetos en C#'),
+(3, 1, '2024-03-01', 'Routing en Express.js'),
+(3, 1, '2024-03-02', 'Middleware en Express.js'),
+(4, 2, '2024-03-15', 'Promises y Async/Await'),
+(9, 3, '2024-03-01', 'Controllers en ASP.NET Core'),
+(11, 1, '2024-03-01', 'POO en Java'),
+(13, 2, '2024-03-15', 'Inyección de Dependencias en Spring');
+
+-- Asistencia
+INSERT INTO Asistencia (id_camper, id_sesion, fecha_registro, estado_asistencia, hora_llegada) VALUES
+(1, 1, '2024-02-01 06:00:00', 'Presente', '06:00:00'),
+(2, 1, '2024-02-01 06:15:00', 'Tardanza', '06:15:00'),
+(3, 4, '2024-02-01 06:00:00', 'Presente', '06:00:00'),
+(4, 4, '2024-02-01 06:00:00', 'Presente', '06:00:00'),
+(5, 5, '2024-03-01 06:00:00', 'Presente', '06:00:00'),
+(6, 5, '2024-03-01 06:00:00', 'Presente', '06:00:00'),
+(7, 6, '2024-03-15 10:00:00', 'Tardanza', '10:15:00', 'Problemas de transporte'),
+(8, 6, '2024-03-15 10:00:00', 'Ausente', NULL, 'Enfermedad');
+
+-- Historial de estados para campers
+INSERT INTO Historial_Estado_Camper (id_camper, id_estado, fecha_cambio) VALUES
+(1, 1, '2024-01-01'), -- En proceso
+(1, 2, '2024-01-10'), -- Inscrito
+(1, 3, '2024-01-15'), -- Aprobado
+(1, 4, '2024-01-20'), -- Cursando
+(2, 1, '2024-01-01'),
+(2, 2, '2024-01-10'),
+(2, 3, '2024-01-15'),
+(2, 4, '2024-01-20'),
+(3, 1, '2024-01-01'),
+(3, 2, '2024-01-10'),
+(3, 6, '2024-02-01'); -- Expulsado
+
+-- Más asignaciones de salones y horarios
+INSERT INTO Asignacion_Salon_Horario (id_salon, id_horario, id_area) VALUES
+(1, 2, 1), -- Apolo - 10:00-14:00 - Backend
+(1, 3, 1), -- Apolo - 14:00-18:00 - Backend
+(2, 1, 2), -- Sputnik - 06:00-10:00 - Frontend
+(2, 3, 2), -- Sputnik - 14:00-18:00 - Frontend
+(3, 1, 1), -- Artemis - 06:00-10:00 - Backend
+(3, 2, 2); -- Artemis - 10:00-14:00 - Frontend
+
+-- Competencias de entrenadores
+INSERT INTO Entrenador_Competencia (id_entrenador, id_competencia) VALUES
+(1, 1), -- Johlver - Lógica de Programación
+(1, 2), -- Johlver - Diseño Web
+(1, 3), -- Johlver - Gestión de Datos
+(2, 1), -- Miguel - Lógica de Programación
+(2, 4), -- Miguel - Arquitectura Backend
+(3, 2); -- Ana - Diseño Web
+
+-- Disponibilidad adicional de entrenadores
+INSERT INTO Disponibilidad_Entrenador (id_entrenador, dia_semana, hora_inicio, hora_fin) VALUES
+(1, 'Sabado', '08:00:00', '12:00:00'),
+(2, 'Jueves', '14:00:00', '22:00:00'),
+(2, 'Viernes', '14:00:00', '22:00:00'),
+(3, 'Lunes', '06:00:00', '14:00:00'),
+(3, 'Miercoles', '06:00:00', '14:00:00'),
+(3, 'Viernes', '06:00:00', '14:00:00');
+
+-- Notificaciones
+INSERT INTO Notificacion (id_usuario, mensaje, fecha_notificacion, leido) VALUES
+(1, 'Nuevo camper registrado en la ruta NodeJS', '2024-01-15 08:00:00', FALSE),
+(2, 'Evaluación pendiente de revisión', '2024-02-01 10:00:00', TRUE),
+(3, 'Recordatorio de entrega de proyecto', '2024-02-15 09:00:00', FALSE);
+
+-- Notificaciones para trainers
+INSERT INTO Notificacion_Trainer (id_entrenador, id_ruta, mensaje, fecha_notificacion, leido) VALUES
+(1, 1, 'Bajo rendimiento detectado en módulo de Express', '2024-03-01 15:00:00', FALSE),
+(2, 2, 'Actualización de contenido en módulo de C#', '2024-03-02 09:00:00', TRUE),
+(3, 3, 'Nueva asignación de grupo', '2024-03-03 10:00:00', FALSE);
+
+-- Corrección de Skills específicos por ruta
+INSERT INTO Skill (nombre_skill, descripcion) VALUES
+-- NodeJS
+('JavaScript Core', 'Fundamentos de JavaScript y programación'),
+('Node.js', 'Desarrollo backend con Node.js'),
+('Express.js', 'Framework web para Node.js'),
+('API Development', 'Desarrollo de APIs RESTful'),
+-- NetCore
+('C# Programming', 'Programación en C# y .NET'),
+('ASP.NET Core', 'Desarrollo web con ASP.NET Core'),
+('Entity Framework', 'ORM para .NET'),
+-- Spring Boot
+('Java Core', 'Fundamentos de Java y POO'),
+('Spring Framework', 'Framework empresarial de Java'),
+('Spring Boot', 'Framework Spring simplificado'),
+('JPA & Hibernate', 'Persistencia de datos en Java');
+
+-- Ruta_Skill (asociación correcta de skills a rutas)
+INSERT INTO Ruta_Skill (id_ruta, id_skill) VALUES
+-- NodeJS
+(1, 1), -- JavaScript Core
+(1, 2), -- Node.js
+(1, 3), -- Express.js
+(1, 4), -- API Development
+-- NetCore
+(2, 5), -- C# Programming
+(2, 6), -- ASP.NET Core
+(2, 7), -- Entity Framework
+-- Spring Boot
+(3, 8), -- Java Core
+(3, 9), -- Spring Framework
+(3, 10), -- Spring Boot
+(3, 11); -- JPA & Hibernate
+
+-- Más campers para cubrir todos los estados y situaciones
+INSERT INTO Camper (numero_identificacion, nombres, apellidos, id_campus, id_estado, nivel_riesgo) VALUES
+-- Campers en proceso de ingreso
+('1001234590', 'Leonardo', 'Vargas', 1, 1, 'Bajo'),
+('1001234591', 'Mariana', 'Ocampo', 1, 1, 'Bajo'),
+-- Campers inscritos
+('1001234592', 'Santiago', 'Pérez', 1, 2, 'Medio'),
+('1001234593', 'Valentina', 'López', 1, 2, 'Bajo'),
+-- Campers aprobados
+('1001234594', 'Sebastián', 'García', 1, 3, 'Bajo'),
+('1001234595', 'Isabella', 'Martínez', 1, 3, 'Medio'),
+-- Campers cursando con diferentes niveles de riesgo
+('1001234596', 'Mateo', 'González', 1, 4, 'Alto'),
+('1001234597', 'Luciana', 'Rodríguez', 1, 4, 'Medio'),
+('1001234598', 'Samuel', 'Torres', 1, 4, 'Bajo'),
+-- Campers graduados
+('1001234599', 'Valeria', 'Herrera', 1, 5, 'Bajo'),
+('1001234600', 'Daniel', 'Ramírez', 1, 5, 'Bajo');
+
+-- Inscripciones adicionales
+INSERT INTO Inscripcion (id_camper, id_ruta, fecha_inscripcion, id_estado_inscripcion) VALUES
+-- NodeJS
+(7, 1, '2024-01-15', 1),
+(8, 1, '2024-01-15', 1),
+-- NetCore
+(9, 2, '2024-01-15', 1),
+(10, 2, '2024-01-15', 1),
+-- Spring Boot
+(11, 3, '2024-01-15', 1),
+(12, 3, '2024-01-15', 1);
+
+-- Evaluaciones adicionales con el sistema 30-60-10
+INSERT INTO Evaluacion (id_inscripcion, id_modulo, fecha_evaluacion, nota_teorica, nota_practica, nota_trabajos_quizzes) VALUES
+-- Evaluaciones NodeJS (rendimiento variado)
+(7, 1, '2024-02-01', 85, 92, 88), -- Buen rendimiento
+(7, 2, '2024-02-15', 78, 85, 82),
+(8, 1, '2024-02-01', 55, 48, 52), -- Bajo rendimiento
+(8, 2, '2024-02-15', 52, 45, 50),
+-- Evaluaciones NetCore
+(9, 5, '2024-02-01', 92, 95, 90), -- Excelente rendimiento
+(9, 6, '2024-02-15', 88, 92, 85),
+(10, 5, '2024-02-01', 58, 52, 55), -- Bajo rendimiento
+(10, 6, '2024-02-15', 62, 58, 60),
+-- Evaluaciones Spring Boot
+(11, 8, '2024-02-01', 75, 82, 78), -- Rendimiento medio
+(11, 9, '2024-02-15', 72, 78, 75),
+(12, 8, '2024-02-01', 95, 98, 92), -- Rendimiento sobresaliente
+(12, 9, '2024-02-15', 92, 95, 90);
+
+-- Asignaciones adicionales a grupos
+INSERT INTO Grupo_Camper_Asignacion (id_grupo, id_camper, fecha_asignacion) VALUES
+(1, 7, '2024-01-16'),
+(1, 8, '2024-01-16'),
+(2, 9, '2024-01-16'),
+(2, 10, '2024-01-16'),
+(3, 11, '2024-01-16'),
+(3, 12, '2024-01-16');
+
+-- Más sesiones de clase para seguimiento
+INSERT INTO Sesion_Clase (id_modulo, id_horario, fecha_sesion, tema) VALUES
+(5, 1, '2024-03-01', 'Introducción a C# y .NET Core'),
+(5, 1, '2024-03-02', 'Tipos de datos y estructuras'),
+(6, 2, '2024-03-15', 'Controllers y Routing en ASP.NET'),
+(8, 1, '2024-03-01', 'Fundamentos de Java'),
+(9, 2, '2024-03-15', 'Spring Core Container');
+
+-- Asistencia adicional
+INSERT INTO Asistencia (id_camper, id_sesion, fecha_registro, estado_asistencia, hora_llegada, justificacion) VALUES
+(9, 7, '2024-03-01 06:00:00', 'Presente', '06:00:00', NULL),
+(10, 7, '2024-03-01 06:10:00', 'Tardanza', '06:10:00', 'Tráfico'),
+(11, 8, '2024-03-15 10:00:00', 'Presente', '10:00:00', NULL),
+(12, 8, '2024-03-15 10:00:00', 'Presente', '10:00:00', NULL);
+
+-- Más material educativo
+INSERT INTO Material_Educativo (id_modulo, titulo, descripcion, url_material) VALUES
+(5, 'Fundamentos .NET Core', 'Introducción a .NET Core'),
+(6, 'Web APIs en .NET', 'Desarrollo de APIs'),
+(8, 'Java Básico', 'Fundamentos de Java'),
+(9, 'Spring Core', 'Conceptos de Spring');
+
+-- Notificaciones adicionales
+INSERT INTO Notificacion (id_usuario, mensaje, fecha_notificacion, leido) VALUES
+(1, 'Reporte mensual de rendimiento disponible', '2024-03-01 09:00:00', FALSE),
+(2, 'Nuevos materiales agregados al módulo', '2024-03-02 11:00:00', FALSE),
+(3, 'Recordatorio de evaluación pendiente', '2024-03-03 10:00:00', FALSE);
+
+-- Notificaciones específicas para trainers
+INSERT INTO Notificacion_Trainer (id_entrenador, id_ruta, mensaje, fecha_notificacion, leido) VALUES
+(1, 1, 'Actualización de contenido Node.js', '2024-03-04 14:00:00', FALSE),
+(2, 2, 'Reunión de seguimiento programada', '2024-03-05 09:00:00', FALSE),
+(3, 3, 'Revisión de proyectos pendiente', '2024-03-06 11:00:00', FALSE);
+
