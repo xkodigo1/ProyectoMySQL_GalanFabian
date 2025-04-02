@@ -1,94 +1,19 @@
+-- 1. Tablas sin dependencias
 INSERT INTO Campus (nombre, ciudad, region, direccion) VALUES 
-('Campuslands Bucaramanga', 'Bucaramanga', 'Santander', 'Calle Principal Bucaramanga'),
-('Campuslands Tibú', 'Tibú', 'Norte de Santander', 'Sede Tibú'),
-('Campuslands Bogotá', 'Bogotá', 'Cundinamarca', 'Sede Bogotá'),
-('Campuslands Cúcuta', 'Cúcuta', 'Norte de Santander', 'Sede Cúcuta');
+('Campuslands Bucaramanga', 'Bucaramanga', 'Santander', 'Calle Principal #123'),
+('Campuslands Bogotá', 'Bogotá', 'Cundinamarca', 'Carrera 7 #456');
 
 INSERT INTO Salon (nombre_salon, capacidad) VALUES 
--- Bucaramanga
 ('Apolo', 33),
 ('Artemis', 33),
 ('Sputnik', 33),
--- Bogotá
-('Orion', 33),
-('Perseo', 33),
--- Cúcuta
-('Andromeda', 33),
-('Fenix', 33),
--- Tibú
-('Pegaso', 33);
+('Orion', 33);
 
 INSERT INTO Horario_Clase (hora_inicio, hora_fin) VALUES 
-('06:00:00', '10:00:00'),  -- Horario 1
-('10:00:00', '14:00:00'),  -- Horario 2
-('14:00:00', '18:00:00'),  -- Horario 3
-('18:00:00', '22:00:00');  -- Horario 4
-
-INSERT INTO Skill (nombre_skill, descripcion) VALUES 
-('Fundamentos de Programación', 'Introducción a la algoritmia, PSeInt y Python'),
-('Programación Web', 'HTML, CSS y Bootstrap'),
-('Programación Formal', 'Java, JavaScript, C#'),
-('Bases de Datos', 'MySQL, MongoDB y PostgreSQL'),
-('Backend', 'NetCore, Spring Boot, NodeJS y Express');
-
-INSERT INTO Modulo (nombre_modulo, id_skill, duracion_horas) VALUES 
--- Fundamentos
-('Introducción a la Algoritmia', 1, 40),
-('PSeInt', 1, 40),
-('Python Básico', 1, 60),
--- Web
-('HTML y CSS', 2, 40),
-('Bootstrap', 2, 40),
-('JavaScript Frontend', 2, 60),
--- Programación Formal
-('Java Fundamentals', 3, 80),
-('C# Básico', 3, 80),
-('JavaScript Backend', 3, 60),
--- Bases de Datos
-('MySQL', 4, 60),
-('MongoDB', 4, 40),
-('PostgreSQL', 4, 40),
--- Backend
-('Spring Boot', 5, 80),
-('NodeJS & Express', 5, 80),
-('.NET Core', 5, 80);
-
-INSERT INTO SistemaGestorBaseDatos (nombre_sgdb, descripcion) VALUES 
-('MySQL', 'Sistema de gestión de bases de datos relacional'),
-('MongoDB', 'Base de datos NoSQL orientada a documentos'),
-('PostgreSQL', 'Sistema de gestión de bases de datos objeto-relacional');
-
-INSERT INTO Entrenador (numero_identificacion, nombres, apellidos, especialidad) VALUES 
-('1234567890', 'Johlver', 'Jose Pardo', 'Desarrollo Backend'),
-('2345678901', 'Miguel', 'Niño', 'Desarrollo Frontend'),
-('3456789012', 'Carolina', 'Forero', 'Bases de Datos'),
-('4567890123', 'Ricardo', 'Rueda', 'Desarrollo FullStack'),
-('5678901234', 'Sandra', 'Ruiz', 'Frontend y UX');
-
-INSERT INTO Conocimiento_Trainer (id_entrenador, id_modulo, nivel_experiencia, fecha_certificacion) VALUES 
-(1, 10, 'Avanzado', '2023-01-15'),  -- Johlver - MySQL
-(1, 12, 'Avanzado', '2023-02-20'),  -- Johlver - PostgreSQL
-(1, 13, 'Avanzado', '2023-03-10'),  -- Johlver - Spring Boot
-(1, 3, 'Avanzado', '2023-04-05');   -- Johlver - Python
-
-INSERT INTO RutaEntrenamiento (nombre_ruta, descripcion, id_sgdb_principal, id_sgdb_alternativo) VALUES 
-('Ruta Backend Java', 'Especialización backend con Java y Spring', 1, 3),
-('Ruta Frontend', 'Especialización en desarrollo frontend', 1, 2),
-('Ruta FullStack JavaScript', 'Desarrollo full stack con JavaScript', 1, 2),
-('Ruta .NET', 'Especialización en desarrollo .NET', 1, 3);
-
-INSERT INTO Asignacion_Entrenador_Ruta (id_entrenador, id_ruta, id_horario) VALUES 
-(1, 1, 1),  -- Johlver - Backend - Mañana
-(1, 1, 2),  -- Johlver - Backend - Tarde
-(2, 2, 1),  -- Miguel - Frontend - Mañana
-(3, 1, 3),  -- Carolina - Backend - Tarde
-(4, 3, 4);  -- Ricardo - FullStack - Noche
-
-INSERT INTO AreaEntrenamiento (nombre_area, descripcion, capacidad) VALUES 
-('Backend', 'Desarrollo backend y bases de datos', 33),
-('Frontend', 'Desarrollo frontend y UX', 33),
-('FullStack', 'Desarrollo full stack', 33),
-('DevOps', 'Infraestructura y despliegue', 33);
+('06:00:00', '10:00:00'),
+('10:00:00', '14:00:00'),
+('14:00:00', '18:00:00'),
+('18:00:00', '22:00:00');
 
 INSERT INTO Estado_camper (descripcion, estado_camper) VALUES 
 ('Iniciando proceso', 'En proceso de ingreso'),
@@ -98,214 +23,230 @@ INSERT INTO Estado_camper (descripcion, estado_camper) VALUES
 ('Finalización exitosa', 'Graduado'),
 ('Expulsión del programa', 'Expulsado'),
 ('Retiro voluntario', 'Retirado'),
-('Rendimiento insuficiente', 'Bajo_Rendimiento'),
-('En riesgo académico', 'En_Riesgo');
+('Bajo rendimiento', 'Bajo_Rendimiento');
 
 INSERT INTO Estado_Inscripcion (descripcion, estado_inscripcion) VALUES 
-('Inscripción activa y en curso', 'Activa'),
-('Inscripción finalizada', 'Completada'),
+('Inscripción activa', 'Activa'),
+('Inscripción completada', 'Completada'),
 ('Inscripción cancelada', 'Cancelada');
 
-INSERT INTO Competencia (nombre_competencia, descripcion) VALUES 
-('Resolución de Problemas', 'Capacidad para resolver problemas complejos'),
-('Trabajo en Equipo', 'Habilidad para trabajar colaborativamente'),
-('Comunicación Efectiva', 'Capacidad de comunicación clara'),
-('Pensamiento Lógico', 'Habilidad de pensamiento estructurado'),
-('Gestión del Tiempo', 'Manejo eficiente del tiempo');
+INSERT INTO AreaEntrenamiento (nombre_area, descripcion, capacidad) VALUES 
+('Backend', 'Desarrollo backend y bases de datos', 33),
+('Frontend', 'Desarrollo frontend y UX', 33),
+('FullStack', 'Desarrollo full stack', 33);
 
-INSERT INTO Usuario (username, password, rol) VALUES 
-('johlver.pardo', SHA2('password123', 256), 'trainer'),
-('admin.campus', SHA2('admin456', 256), 'admin'),
-('camper.ejemplo', SHA2('camper789', 256), 'camper');
+INSERT INTO Skill (nombre_skill, descripcion) VALUES 
+('Fundamentos', 'Fundamentos de programación'),
+('Frontend', 'Desarrollo frontend'),
+('Backend', 'Desarrollo backend'),
+('Bases de Datos', 'Gestión de bases de datos'),
+('DevOps', 'Infraestructura y despliegue');
 
-INSERT INTO Camper (numero_identificacion, nombres, apellidos, id_campus, id_estado, nivel_riesgo, id_usuario) VALUES 
-('1001234567', 'Ana María', 'González', 1, 4, 'Bajo', 3),
-('1001234568', 'Carlos', 'Rodríguez', 1, 4, 'Bajo', NULL),
-('1001234569', 'Laura', 'Martínez', 1, 4, 'Medio', NULL),
-('1001234570', 'Juan', 'Pérez', 2, 4, 'Bajo', NULL),
-('1001234571', 'María', 'López', 2, 4, 'Alto', NULL),
-('1001234572', 'Diego', 'Sánchez', 3, 4, 'Bajo', NULL),
-('1001234573', 'Valentina', 'Torres', 3, 4, 'Medio', NULL),
-('1001234574', 'Andrés', 'Ramírez', 4, 4, 'Bajo', NULL);
+-- 2. Tablas con dependencias primarias
+INSERT INTO Modulo (nombre_modulo, id_skill) VALUES 
+('Introducción a la programación', 1),
+('HTML y CSS', 2),
+('JavaScript Básico', 2),
+('Java Fundamentals', 3),
+('SQL Básico', 4);
 
-INSERT INTO Acudiente (id_camper, nombres, apellidos, telefono, email) VALUES 
-(1, 'Pedro', 'González', '3101234567', 'pedro.g@email.com'),
-(2, 'Martha', 'Rodríguez', '3112345678', 'martha.r@email.com'),
-(3, 'José', 'Martínez', '3123456789', 'jose.m@email.com'),
-(4, 'Carmen', 'Pérez', '3134567890', 'carmen.p@email.com');
+INSERT INTO SistemaGestorBaseDatos (nombre_sgdb, descripcion) VALUES 
+('MySQL', 'Sistema de gestión de bases de datos relacional'),
+('PostgreSQL', 'Sistema de gestión de bases de datos objeto-relacional'),
+('MongoDB', 'Base de datos NoSQL orientada a documentos');
 
-INSERT INTO Direccion (id_camper, calle, ciudad, departamento, codigo_postal, pais) VALUES 
-(1, 'Calle 123', 'Bucaramanga', 'Santander', '680001', 'Colombia'),
-(2, 'Carrera 45', 'Bucaramanga', 'Santander', '680002', 'Colombia'),
-(3, 'Avenida 67', 'Tibú', 'Norte de Santander', '540001', 'Colombia'),
-(4, 'Calle 89', 'Bogotá', 'Cundinamarca', '110111', 'Colombia');
+INSERT INTO RutaEntrenamiento (nombre_ruta, descripcion, id_sgdb_principal, id_sgdb_alternativo) VALUES 
+('Ruta Backend Java', 'Especialización en desarrollo backend', 1, 2),
+('Ruta Frontend', 'Especialización en desarrollo frontend', 1, 3),
+('Ruta FullStack', 'Desarrollo full stack', 1, 2);
 
-INSERT INTO Inscripcion (id_camper, id_ruta, fecha_inscripcion, id_estado_inscripcion, promedio_general) VALUES 
-(1, 1, '2024-01-15', 1, 85.5),
-(2, 2, '2024-01-15', 1, 78.3),
-(3, 3, '2024-01-16', 1, 92.0),
-(4, 4, '2024-01-16', 1, 88.7);
+INSERT INTO Entrenador (numero_identificacion, nombres, apellidos, especialidad) VALUES 
+('1001', 'Juan', 'Pérez', 'Backend'),
+('1002', 'María', 'González', 'Frontend'),
+('1003', 'Carlos', 'Rodríguez', 'FullStack');
 
-INSERT INTO Grupo_Campers (nombre_grupo, id_ruta, fecha_creacion) VALUES 
-('J1', 1, '2024-01-15'),
-('J2', 1, '2024-01-15'),
-('J3', 2, '2024-01-15'),
-('J4', 2, '2024-01-15');
+-- 3. Tablas con dependencias secundarias
+INSERT INTO Camper (numero_identificacion, nombres, apellidos, id_campus, id_estado, nivel_riesgo) VALUES 
+('2001', 'Ana', 'Martínez', 1, 1, 'Bajo'),
+('2002', 'Luis', 'García', 1, 2, 'Medio'),
+('2003', 'Sofia', 'López', 2, 3, 'Bajo');
 
-INSERT INTO Telefono_Camper (id_camper, numero, tipo, es_principal) VALUES 
-(1, '3201234567', 'movil', TRUE),
-(1, '6017654321', 'fijo', FALSE),
-(2, '3212345678', 'movil', TRUE),
-(3, '3223456789', 'movil', TRUE),
-(4, '3234567890', 'movil', TRUE);
+INSERT INTO Grupo_Campers (nombre_grupo, id_ruta, fecha_creacion, id_salon) VALUES 
+('Grupo-1', 1, CURDATE(), 1),
+('Grupo-2', 2, CURDATE(), 2),
+('Grupo-3', 3, CURDATE(), 3);
 
-INSERT INTO Telefono_Entrenador (id_entrenador, numero, tipo, es_principal) VALUES 
-(1, '3101234567', 'movil', TRUE),
-(2, '3112345678', 'movil', TRUE),
-(3, '3123456789', 'movil', TRUE),
-(4, '3134567890', 'movil', TRUE),
-(5, '3145678901', 'movil', TRUE);
+INSERT INTO Inscripcion (id_camper, id_ruta, fecha_inscripcion, id_estado_inscripcion) VALUES 
+(1, 1, CURDATE(), 1),
+(2, 2, CURDATE(), 1),
+(3, 3, CURDATE(), 1);
 
-INSERT INTO Historial_Estado_Camper (id_camper, id_estado_anterior, id_estado_nuevo, fecha_cambio, motivo) VALUES 
-(1, 1, 4, '2024-01-15', 'Inicio de clases'),
-(2, 1, 4, '2024-01-15', 'Inicio de clases'),
-(3, 1, 4, '2024-01-16', 'Inicio de clases'),
-(4, 1, 4, '2024-01-16', 'Inicio de clases');
+-- 4. Tablas con dependencias terciarias
+INSERT INTO Conocimiento_Trainer (id_entrenador, id_modulo, nivel_experiencia, fecha_certificacion) VALUES 
+(1, 4, 'Avanzado', '2023-01-15'),  -- Juan - Java
+(2, 2, 'Avanzado', '2023-01-15'),  -- María - HTML/CSS
+(3, 3, 'Avanzado', '2023-01-15');  -- Carlos - JavaScript
+
+INSERT INTO Entrenador_Area (id_entrenador, id_area) VALUES 
+(1, 1),  -- Juan - Backend
+(2, 2),  -- María - Frontend
+(3, 3);  -- Carlos - FullStack
+
+INSERT INTO Asignacion_Entrenador_Ruta (id_entrenador, id_ruta, id_horario) VALUES 
+(1, 1, 1),  -- Juan - Backend - Mañana
+(2, 2, 2),  -- María - Frontend - Tarde
+(3, 3, 3);  -- Carlos - FullStack - Tarde
 
 INSERT INTO Asignacion_Salon_Horario (id_salon, id_horario, id_area) VALUES 
 (1, 1, 1),  -- Apolo - Mañana - Backend
 (2, 2, 2),  -- Artemis - Tarde - Frontend
-(3, 3, 3),  -- Sputnik - Tarde - FullStack
-(4, 4, 1);  -- Orion - Noche - Backend
-
-INSERT INTO Evaluacion (id_inscripcion, id_modulo, nota_teorica, nota_practica, nota_trabajos_quizzes, nota_final) VALUES 
-(1, 1, 85, 88, 90, 87.5),
-(1, 2, 90, 92, 88, 90.8),
-(2, 4, 78, 82, 85, 81.3),
-(2, 5, 88, 85, 90, 86.7);
-
-INSERT INTO Camper (numero_identificacion, nombres, apellidos, id_campus, id_estado, nivel_riesgo) VALUES 
-('1001', 'Juan', 'Pérez', 1, 2, 'Bajo'),    -- Inscrito
-('1002', 'María', 'López', 1, 3, 'Bajo'),    -- Aprobado
-('1003', 'Carlos', 'Ruiz', 1, 4, 'Alto'),    -- Cursando
-('1004', 'Ana', 'García', 1, 5, 'Bajo'),     -- Graduado
-('1005', 'Pedro', 'Martínez', 1, 6, 'Medio'), -- Expulsado
-('1006', 'Laura', 'Sánchez', 1, 7, 'Alto');   -- Retirado
-
-INSERT INTO Grupo_Campers (nombre_grupo, id_ruta) VALUES 
-('J1', 1),
-('J2', 1),
-('J3', 2),
-('J4', 3);
+(3, 3, 3);  -- Sputnik - Tarde - FullStack
 
 INSERT INTO Grupo_Camper_Asignacion (id_grupo, id_camper) VALUES 
-(1, 1),
-(1, 2),
-(2, 3),
-(2, 4);
+(1, 1),  -- Grupo-1 - Ana
+(2, 2),  -- Grupo-2 - Luis
+(3, 3);  -- Grupo-3 - Sofia
 
+INSERT INTO Asignacion_Entrenador_Grupo (id_entrenador, id_grupo, id_area, fecha_inicio) VALUES 
+(1, 1, 1, CURDATE()),  -- Juan - Grupo-1 - Backend
+(2, 2, 2, CURDATE()),  -- María - Grupo-2 - Frontend
+(3, 3, 3, CURDATE());  -- Carlos - Grupo-3 - FullStack
+
+INSERT INTO Evaluacion (
+    id_inscripcion, 
+    id_modulo, 
+    fecha_evaluacion,
+    nota_teorica, 
+    nota_practica, 
+    nota_trabajos_quizzes
+) VALUES 
+(1, 1, CURDATE(), 85, 90, 88),  -- Ana - Fundamentos
+(2, 2, CURDATE(), 92, 88, 95),  -- Luis - HTML/CSS
+(3, 3, CURDATE(), 78, 82, 80);  -- Sofia - JavaScript
+
+INSERT INTO Telefono_Camper (id_camper, numero, tipo, es_principal) VALUES 
+(1, '3001234567', 'movil', TRUE),
+(2, '3011234567', 'movil', TRUE),
+(3, '3021234567', 'movil', TRUE);
+
+INSERT INTO Telefono_Entrenador (id_entrenador, numero, tipo, es_principal) VALUES 
+(1, '3101234567', 'movil', TRUE),
+(2, '3111234567', 'movil', TRUE),
+(3, '3121234567', 'movil', TRUE);
+
+INSERT INTO Historial_Estado_Camper (id_camper, id_estado_anterior, id_estado_nuevo, fecha_cambio, motivo) VALUES 
+(1, 1, 2, CURDATE(), 'Inscripción completada'),
+(2, 1, 2, CURDATE(), 'Inscripción completada'),
+(3, 1, 2, CURDATE(), 'Inscripción completada');
+
+-------
+
+-- Agregar más campers con diferentes estados y niveles de riesgo
+INSERT INTO Camper (numero_identificacion, nombres, apellidos, id_campus, id_estado, nivel_riesgo) VALUES 
+('2004', 'Pedro', 'Sánchez', 1, 4, 'Alto'),    -- Cursando con riesgo alto
+('2005', 'Laura', 'Ramírez', 1, 5, 'Bajo'),    -- Graduado
+('2006', 'Carlos', 'Díaz', 2, 6, 'Alto'),      -- Expulsado
+('2007', 'Diana', 'Torres', 2, 7, 'Medio'),    -- Retirado
+('2008', 'Miguel', 'Vargas', 1, 8, 'Alto'),    -- Bajo rendimiento
+('2009', 'Andrea', 'Ruiz', 1, 4, 'Medio'),     -- Cursando
+('2010', 'José', 'Castro', 2, 4, 'Bajo');      -- Cursando
+
+-- Agregar más inscripciones para los nuevos campers
+INSERT INTO Inscripcion (id_camper, id_ruta, fecha_inscripcion, id_estado_inscripcion) VALUES 
+(4, 1, DATE_SUB(CURDATE(), INTERVAL 15 DAY), 1),
+(5, 2, DATE_SUB(CURDATE(), INTERVAL 60 DAY), 2),
+(6, 3, DATE_SUB(CURDATE(), INTERVAL 45 DAY), 3),
+(7, 1, DATE_SUB(CURDATE(), INTERVAL 30 DAY), 3),
+(8, 2, DATE_SUB(CURDATE(), INTERVAL 20 DAY), 1),
+(9, 3, DATE_SUB(CURDATE(), INTERVAL 10 DAY), 1),
+(10, 1, CURDATE(), 1);
+
+-- Agregar más evaluaciones con diferentes notas
+INSERT INTO Evaluacion (
+    id_inscripcion, 
+    id_modulo, 
+    fecha_evaluacion,
+    nota_teorica, 
+    nota_practica, 
+    nota_trabajos_quizzes
+) VALUES 
+-- Evaluaciones con notas bajas (reprobadas)
+(4, 1, CURDATE(), 45, 55, 50),  -- Pedro - Fundamentos
+(4, 2, CURDATE(), 52, 58, 55),  -- Pedro - HTML/CSS
+(8, 1, CURDATE(), 48, 52, 50),  -- Miguel - Fundamentos
+-- Evaluaciones con notas altas
+(5, 2, CURDATE(), 95, 98, 96),  -- Laura - HTML/CSS
+(5, 3, CURDATE(), 92, 95, 94),  -- Laura - JavaScript
+-- Evaluaciones mixtas
+(9, 3, CURDATE(), 75, 82, 78),  -- Andrea - JavaScript
+(10, 1, CURDATE(), 88, 85, 82); -- José - Fundamentos
+
+-- Agregar más teléfonos para campers (algunos con múltiples números)
+INSERT INTO Telefono_Camper (id_camper, numero, tipo, es_principal) VALUES 
+(4, '3031234567', 'movil', TRUE),
+(4, '6017654321', 'fijo', FALSE),    -- Pedro tiene dos números
+(5, '3041234567', 'movil', TRUE),
+(5, '3051234567', 'trabajo', FALSE), -- Laura tiene dos números
+(6, '3061234567', 'movil', TRUE),
+(7, '3071234567', 'movil', TRUE),
+(8, '3081234567', 'movil', TRUE),
+(9, '3091234567', 'movil', TRUE),
+(10, '3101234567', 'movil', TRUE);
+
+-- Agregar acudientes para los campers
+INSERT INTO Acudiente (id_camper, nombres, apellidos, telefono, email) VALUES 
+(4, 'María', 'Sánchez', '3151234567', 'maria@email.com'),
+(5, 'Jorge', 'Ramírez', '3161234567', 'jorge@email.com'),
+(6, 'Ana', 'Díaz', '3171234567', 'ana@email.com'),
+(7, 'Luis', 'Torres', '3181234567', 'luis@email.com'),
+(8, 'Carmen', 'Vargas', '3191234567', 'carmen@email.com'),
+(9, 'Pablo', 'Ruiz', '3201234567', 'pablo@email.com'),
+(10, 'Elena', 'Castro', '3211234567', 'elena@email.com');
+
+-- Agregar más grupos
+INSERT INTO Grupo_Campers (nombre_grupo, id_ruta, fecha_creacion, id_salon) VALUES 
+('Grupo-4', 1, CURDATE(), 4),
+('Grupo-5', 2, CURDATE(), 1),
+('Grupo-6', 3, CURDATE(), 2);
+
+-- Asignar campers a grupos
+INSERT INTO Grupo_Camper_Asignacion (id_grupo, id_camper) VALUES 
+(4, 4),
+(4, 5),
+(5, 6),
+(5, 7),
+(6, 8),
+(6, 9),
+(6, 10);
+
+-- Agregar más asignaciones de entrenadores a grupos
+INSERT INTO Asignacion_Entrenador_Grupo (id_entrenador, id_grupo, id_area, fecha_inicio) VALUES 
+(1, 4, 1, CURDATE()),
+(2, 5, 2, CURDATE()),
+(3, 6, 3, CURDATE());
+
+-- Agregar disponibilidad de entrenadores
 INSERT INTO Disponibilidad_Entrenador (id_entrenador, hora_inicio, hora_fin, dia_semana) VALUES 
 (1, '06:00:00', '10:00:00', 'Lunes'),
 (1, '10:00:00', '14:00:00', 'Martes'),
 (2, '14:00:00', '18:00:00', 'Lunes'),
-(3, '18:00:00', '22:00:00', 'Miércoles');
+(2, '14:00:00', '18:00:00', 'Miércoles'),
+(3, '18:00:00', '22:00:00', 'Martes'),
+(3, '18:00:00', '22:00:00', 'Jueves');
 
-INSERT INTO Evaluacion (id_inscripcion, id_modulo, nota_teorica, nota_practica, nota_trabajos_quizzes, nota_final) VALUES 
-(1, 1, 80, 85, 90, 84.5),
-(1, 2, 75, 88, 92, 84.1),
-(2, 1, 95, 92, 88, 92.3),
-(2, 2, 70, 65, 60, 66.0);
+-- Agregar más conocimientos de trainers
+INSERT INTO Conocimiento_Trainer (id_entrenador, id_modulo, nivel_experiencia, fecha_certificacion) VALUES 
+(1, 5, 'Avanzado', '2023-02-15'),  -- Juan - SQL
+(2, 3, 'Intermedio', '2023-03-15'), -- María - JavaScript
+(3, 1, 'Avanzado', '2023-04-15');  -- Carlos - Fundamentos
 
-INSERT INTO Inscripcion (id_camper, id_ruta, fecha_inscripcion, id_estado_inscripcion) VALUES 
-(1, 1, '2024-01-15', 1),
-(2, 1, '2024-01-15', 1),
-(3, 2, '2024-01-16', 1),
-(4, 3, '2024-01-16', 1);
-
-INSERT INTO Telefono_Camper (id_camper, numero, tipo, es_principal) VALUES 
-(1, '3001234567', 'movil', TRUE),
-(1, '3011234567', 'fijo', FALSE),
-(2, '3021234567', 'movil', TRUE),
-(3, '3031234567', 'movil', TRUE);
-
-INSERT INTO Acudiente (id_camper, nombres, apellidos, telefono, email) VALUES 
-(1, 'Roberto', 'Pérez', '3101234567', 'roberto@email.com'),
-(2, 'Carmen', 'López', '3111234567', 'carmen@email.com'),
-(3, 'Jorge', 'Ruiz', '3121234567', 'jorge@email.com');
-
-INSERT INTO Entrenador_Area (id_entrenador, id_area) VALUES 
-(1, 1),  -- Johlver - Backend
-(2, 2),  -- Miguel - Frontend
-(3, 1),  -- Carolina - Backend
-(4, 3);  -- Ricardo - FullStack
-
-INSERT INTO Asignacion_Entrenador_Grupo (id_entrenador, id_grupo) VALUES 
-(1, 1),
-(1, 2),
-(2, 3),
-(3, 4);
-
--- Ruta_Skill (para relacionar rutas con skills/módulos)
-INSERT INTO Ruta_Skill (id_ruta, id_skill) VALUES
-(1, 3),  -- Ruta Backend Java - Programación Formal
-(1, 4),  -- Ruta Backend Java - Bases de Datos
-(1, 5),  -- Ruta Backend Java - Backend
-(2, 2),  -- Ruta Frontend - Programación Web
-(3, 2),  -- Ruta FullStack - Programación Web
-(3, 3),  -- Ruta FullStack - Programación Formal
-(3, 5);  -- Ruta FullStack - Backend
-
--- Actualizar Grupo_Campers para incluir id_salon
-ALTER TABLE Grupo_Campers ADD COLUMN id_salon INT;
-UPDATE Grupo_Campers SET id_salon = 1 WHERE nombre_grupo = 'J1';
-UPDATE Grupo_Campers SET id_salon = 2 WHERE nombre_grupo = 'J2';
-UPDATE Grupo_Campers SET id_salon = 3 WHERE nombre_grupo = 'J3';
-UPDATE Grupo_Campers SET id_salon = 4 WHERE nombre_grupo = 'J4';
-
--- Más evaluaciones para tener mejor distribución de notas
-INSERT INTO Evaluacion (id_inscripcion, id_modulo, nota_teorica, nota_practica, nota_trabajos_quizzes, nota_final) VALUES 
-(3, 1, 55, 58, 52, 55.0),
-(3, 2, 45, 48, 52, 48.0),
-(4, 1, 95, 98, 92, 95.0),
-(4, 2, 88, 92, 90, 90.0),
-(1, 3, 72, 68, 70, 70.0),
-(2, 3, 58, 52, 55, 55.0);
-
--- Más campers con diferentes niveles de riesgo
-INSERT INTO Camper (numero_identificacion, nombres, apellidos, id_campus, id_estado, nivel_riesgo) VALUES 
-('1007', 'Diego', 'Ramírez', 1, 4, 'Alto'),
-('1008', 'Sofia', 'Torres', 1, 4, 'Medio'),
-('1009', 'Lucas', 'Vargas', 1, 4, 'Alto'),
-('1010', 'Valentina', 'Castro', 1, 4, 'Medio');
-
--- Más registros de historial de estados
-INSERT INTO Historial_Estado_Camper (id_camper, id_estado_anterior, id_estado_nuevo, fecha_cambio, motivo) VALUES 
-(5, 1, 2, '2024-01-15', 'Inscripción completada'),
-(5, 2, 4, '2024-01-20', 'Inicio de clases'),
-(5, 4, 8, '2024-02-15', 'Bajo rendimiento'),
-(6, 1, 2, '2024-01-15', 'Inscripción completada'),
-(6, 2, 4, '2024-01-20', 'Inicio de clases'),
-(6, 4, 7, '2024-02-10', 'Retiro voluntario');
-
--- Más inscripciones
-INSERT INTO Inscripcion (id_camper, id_ruta, fecha_inscripcion, id_estado_inscripcion) VALUES 
-(5, 1, '2024-01-15', 1),
-(6, 2, '2024-01-15', 1),
-(7, 1, '2024-01-16', 1),
-(8, 2, '2024-01-16', 1);
-
--- Más asignaciones a grupos
-INSERT INTO Grupo_Camper_Asignacion (id_grupo, id_camper) VALUES 
-(3, 5),
-(3, 6),
-(4, 7),
-(4, 8);
-
--- Más evaluaciones para los nuevos campers
-INSERT INTO Evaluacion (id_inscripcion, id_modulo, nota_teorica, nota_practica, nota_trabajos_quizzes, nota_final) VALUES 
-(5, 1, 45, 48, 52, 48.0),
-(5, 2, 55, 52, 58, 55.0),
-(6, 1, 92, 88, 95, 91.7),
-(6, 2, 85, 88, 82, 85.0),
-(7, 1, 78, 82, 75, 78.3),
-(8, 1, 68, 72, 65, 68.3);
+-- Agregar más asignaciones de rutas con skills
+INSERT INTO Ruta_Skill (id_ruta, id_skill) VALUES 
+(1, 1), -- Backend - Fundamentos
+(1, 3), -- Backend - Backend
+(1, 4), -- Backend - Bases de Datos
+(2, 1), -- Frontend - Fundamentos
+(2, 2), -- Frontend - Frontend
+(3, 1), -- FullStack - Fundamentos
+(3, 2), -- FullStack - Frontend
+(3, 3); -- FullStack - Backend

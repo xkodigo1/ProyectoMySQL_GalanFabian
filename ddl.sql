@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS campusmanagement;
-USE campusmanagement;
+CREATE DATABASE IF NOT EXISTS campus_db;
+USE campus_db;
 
 -- ======================================================
 -- 1. TABLAS BASE (Sin dependencias)
