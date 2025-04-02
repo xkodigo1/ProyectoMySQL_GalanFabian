@@ -170,3 +170,72 @@ SELECT e.nombres, e.apellidos,
 FROM Entrenador e
 JOIN Disponibilidad_Entrenador de ON e.id_entrenador = de.id_entrenador
 ORDER BY e.nombres, de.dia_semana;
+
+-- 🧭 CONSULTAS DE RUTAS Y AREAS DE ENTRENAMIENTO
+
+-- 1. Consulta de Rutas de Entrenamiento
+SELECT nombre_ruta, descripcion 
+FROM RutaEntrenamiento;
+
+-- 2. Consulta de Rutas con Sistemas de Bases de Datos
+SELECT r.nombre_ruta, 
+       s1.nombre_sgdb as bd_principal,
+       s2.nombre_sgdb as bd_alternativa
+FROM RutaEntrenamiento r
+JOIN SistemaGestorBaseDatos s1 ON r.id_sgdb_principal = s1.id_sgdb
+JOIN SistemaGestorBaseDatos s2 ON r.id_sgdb_alternativo = s2.id_sgdb;
+
+-- 3. Consulta de Módulos por Ruta
+SELECT r.nombre_ruta, s.nombre_skill, m.nombre_modulo
+FROM RutaEntrenamiento r
+JOIN Ruta_Skill rs ON r.id_ruta = rs.id_ruta
+JOIN Skill s ON rs.id_skill = s.id_skill
+JOIN Modulo m ON s.id_skill = m.id_skill;
+
+-- 4. Consulta de Campers por Grupo
+SELECT g.nombre_grupo, c.nombres, c.apellidos
+FROM Grupo_Campers g
+JOIN Grupo_Camper_Asignacion gca ON g.id_grupo = gca.id_grupo
+JOIN Camper c ON gca.id_camper = c.id_camper;
+
+-- 5. Consulta de Entrenadores y sus Áreas
+SELECT e.nombres, e.apellidos, a.nombre_area
+FROM Entrenador e
+JOIN Entrenador_Area ea ON e.id_entrenador = ea.id_entrenador
+JOIN AreaEntrenamiento a ON ea.id_area = a.id_area;
+
+-- 6. Consulta de Salones y Horarios
+SELECT s.nombre_salon, h.hora_inicio, h.hora_fin, a.nombre_area
+FROM Asignacion_Salon_Horario ash
+JOIN Salon s ON ash.id_salon = s.id_salon
+JOIN Horario_Clase h ON ash.id_horario = h.id_horario
+JOIN AreaEntrenamiento a ON ash.id_area = a.id_area;
+
+-- 7. Consulta de Evaluaciones por Camper
+SELECT c.nombres, c.apellidos, m.nombre_modulo, 
+       e.nota_teorica, e.nota_practica, e.nota_trabajos_quizzes, e.nota_final
+FROM Evaluacion e
+JOIN Inscripcion i ON e.id_inscripcion = i.id_inscripcion
+JOIN Camper c ON i.id_camper = c.id_camper
+JOIN Modulo m ON e.id_modulo = m.id_modulo;
+
+-- 8. Consulta de Campers y sus Acudientes
+SELECT c.nombres as nombre_camper, c.apellidos as apellido_camper,
+       a.nombres as nombre_acudiente, a.apellidos as apellido_acudiente,
+       a.telefono, a.email
+FROM Camper c
+JOIN Acudiente a ON c.id_camper = a.id_camper;
+
+-- 9. Consulta de Disponibilidad de Entrenadores
+SELECT e.nombres, e.apellidos, d.dia_semana, 
+       d.hora_inicio, d.hora_fin
+FROM Entrenador e
+JOIN Disponibilidad_Entrenador d ON e.id_entrenador = d.id_entrenador
+ORDER BY d.dia_semana, d.hora_inicio;
+
+-- 10. Consulta de Asignaciones de Entrenadores a Rutas
+SELECT e.nombres, e.apellidos, r.nombre_ruta, h.hora_inicio, h.hora_fin
+FROM Asignacion_Entrenador_Ruta aer
+JOIN Entrenador e ON aer.id_entrenador = e.id_entrenador
+JOIN RutaEntrenamiento r ON aer.id_ruta = r.id_ruta
+JOIN Horario_Clase h ON aer.id_horario = h.id_horario;
